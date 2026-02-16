@@ -1,6 +1,6 @@
 markdown: kramdown
 exclude: ["vendor"]
-baseurl: "/advanced-mis"
+baseurl: "/"
 collections:
   recipes:
     output: true
