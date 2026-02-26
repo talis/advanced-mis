@@ -9,7 +9,7 @@ styling changes that promote this ethos are welcomed.
 ## How it works
 
 This is a special GitHub pages repo, powered by Jekyll. The master is build automatically by GitHub and displayed at
-https://techfromsage.github.io/advanced-mis.
+https://advanced-mis.talis.io/.
 
 If you wish to make changes, create a branch and submit a pull request.
 
