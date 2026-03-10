@@ -64,6 +64,10 @@ Connection is straight forward, simply select 'redshift' as the connection type 
 
 ### ODBC
 
+<div class="alert alert-warning" role="alert">
+ODBC 1.x driver support will be discontinued on June 1, 2026
+</div>
+
 ODBC is a generic database driver framework which can be a handy way to connect to many different types of database.
 
 * __Windows__: To make an ODBC connection available on your Windows machine, [follow these instructions for Windows Amazon Redshift ODBC installation and configuration](https://docs.aws.amazon.com/redshift/latest/mgmt/odbc20-install-config-win.html).

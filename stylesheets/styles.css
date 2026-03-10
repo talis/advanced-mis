@@ -475,6 +475,38 @@ i.no {
   color: #A02F2B;
 }
 
+.alert {
+  --talis-alert-bg: transparent;
+  --talis-alert-border-color: transparent;
+  --talis-alert-color: black;
+  padding: 20px;
+  margin: 20px 0;
+  border: 0 solid var(--talis-alert-border-color);
+  border-left-width: 3px;
+  background-color: var(--talis-alert-bg);
+  color: var(--talis-alert-color);
+}
+
+.alert-danger {
+  --talis-alert-bg: rgb(231.4, 166.2, 169.4);
+  --talis-alert-border-color: #c42129;
+}
+
+.alert-info {
+  --talis-alert-bg: rgb(183.4, 231, 238.6);
+  --talis-alert-border-color: #4cc3d6;
+}
+
+.alert-success {
+  --talis-alert-bg: rgb(200.6, 242.6, 235.4);
+  --talis-alert-border-color: #77e0ce;
+}
+
+.alert-warning {
+  --talis-alert-bg: rgb(255, 233.4, 179.8);
+  --talis-alert-border-color: #ffc943;
+}
+
 .deprecated {
   background-color: red;
   border: 2px solid red;
