@@ -1,7 +1,13 @@
 markdown: kramdown
-exclude: ["vendor"]
 baseurl: "/"
 collections:
   recipes:
     output: true
     permalink: :collection/:name:output_ext
+exclude:
+  - Dockerfile
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - start-dev.sh
+  - vendor
