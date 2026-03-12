@@ -61,5 +61,6 @@ body_class: items
 | `online_resource_source` | `VARCHAR(4096)` | Will show whether the DOI, Open URL or Web Address is chosen as the source for the view online button | `DOI`, `Open URL`, `Web Address` |
 | `has_upload_file` | `VARCHAR(3)` | Whether or not a Talis Engage file is attached to the list item  | `Yes` |
 | `list_resource_content_file_type` | `VARCHAR(10)` | The file type of the Talis Engage file | `pdf` |
+| `tags` | `VARCHAR(4096)` | Tags added to the item. Semicolon + space `'; '` separated if there are multiple tags. | `OpenAccess; Indigenous Author` |
 
 **WARNING:** The data dictionary is subject to change. For that reason always refer to column names directly in your SQL statements, not column positions.
