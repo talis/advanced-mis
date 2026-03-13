@@ -119,4 +119,10 @@ erDiagram
     f_elevate_users {
         string talis_guid
     }
+
+    f_rl_item_tag_ids {
+        string tag_id
+        string list_item_id
+    }
+    f_rl_item_tag_ids ||--o{ f_rl_items : list_item_id
 </div>
