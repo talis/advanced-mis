@@ -125,4 +125,9 @@ erDiagram
         string list_item_id
     }
     f_rl_item_tag_ids ||--o{ f_rl_items : list_item_id
+    f_rl_tags ||--o{ f_rl_tags : id
+
+    f_rl_tags {
+        string id
+    }
 </div>
