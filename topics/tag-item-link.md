@@ -9,7 +9,7 @@ body_class: tag-item-link
   <dd>Tag Item Links</dd>
 
   <dt>Description</dt>
-  <dd>A mapping between a tag and list item.</dd>
+  <dd>A mapping between a tag and a list item.</dd>
 
   <dt>Database location</dt>
   <dd><code>public.f_rl_tag_item_link</code></dd>
