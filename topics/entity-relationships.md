@@ -125,7 +125,7 @@ erDiagram
         string item_guid
     }
     f_rl_tag_item_link ||--o{ f_rl_items : item_guid
-    f_rl_tags ||--o{ f_rl_tags : tag_guid
+    f_rl_tag_item_link ||--o{ f_rl_tags : tag_guid
 
     f_rl_tags {
         string tag_guid
