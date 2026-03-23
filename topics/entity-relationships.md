@@ -120,14 +120,15 @@ erDiagram
         string talis_guid
     }
 
-    f_rl_item_tag_ids {
-        string tag_id
-        string list_item_id
+    f_rl_tag_item_link {
+        string tag_guid
+        string item_guid
     }
-    f_rl_item_tag_ids ||--o{ f_rl_items : list_item_id
-    f_rl_tags ||--o{ f_rl_tags : id
+    f_rl_tag_item_link ||--o{ f_rl_items : item_guid
+    f_rl_tags ||--o{ f_rl_tags : tag_id
 
     f_rl_tags {
-        string id
+        string tag_id
     }
+
 </div>
