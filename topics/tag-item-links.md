@@ -1,7 +1,7 @@
 ---
 layout: site
 title: "Data dictionary: Tag Item Links"
-body_class: lists
+body_class: tag-item-link
 ---
 
 <dl>
