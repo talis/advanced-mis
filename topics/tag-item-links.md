@@ -6,13 +6,13 @@ body_class: lists
 
 <dl>
   <dt>Entity</dt>
-  <dd>Tag-to-List Item</dd>
+  <dd>Tag Item Links</dd>
 
   <dt>Description</dt>
   <dd>A mapping between a tag and list item.</dd>
 
   <dt>Database location</dt>
-  <dd><code>public.f_rl_item_tag_ids</code></dd>
+  <dd><code>public.f_rl_tag_item_link</code></dd>
 </dl>
 
 ### Columns
