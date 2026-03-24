@@ -1,7 +1,7 @@
 ---
 layout: site
 title: "Data dictionary: Tag Item Links"
-body_class: tag-item-link
+body_class: tag-item-links
 ---
 
 <dl>
@@ -12,7 +12,7 @@ body_class: tag-item-link
   <dd>A mapping between a tag and a list item.</dd>
 
   <dt>Database location</dt>
-  <dd><code>public.f_rl_tag_item_link</code></dd>
+  <dd><code>public.f_rl_tag_item_links</code></dd>
 </dl>
 
 ### Columns
