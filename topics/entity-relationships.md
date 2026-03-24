@@ -119,4 +119,8 @@ erDiagram
     f_elevate_users {
         string talis_guid
     }
+
+    f_rl_tags {
+        string tag_guid
+    }
 </div>
