@@ -19,7 +19,7 @@ body_class: tags
 
 | Column Name | Datatype       | Description               | Example                                |
 | ----------- | -------------- | ------------------------- | -------------------------------------- |
-| `tag_guid`  | `VARCHAR(64)`  | The guid of the tag       | `478A70D8-C627-91EC-D681-FFE617FABDD9` |
+| `tag_guid`  | `VARCHAR(64)`  | The GUID of the tag       | `478A70D8-C627-91EC-D681-FFE617FABDD9` |
 | `title`     | `VARCHAR(max)` | The tag title             | `Open access`                          |
 | `is_active` | `boolean`      | Enables or disables a tag | `0` or `1`                             |
 
