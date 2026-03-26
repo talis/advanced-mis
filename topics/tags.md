@@ -21,6 +21,6 @@ body_class: tags
 | ----------- | -------------- | ------------------------- | -------------------------------------- |
 | `tag_guid`  | `VARCHAR(64)`  | The GUID of the tag       | `478A70D8-C627-91EC-D681-FFE617FABDD9` |
 | `title`     | `VARCHAR(max)` | The tag title             | `Open access`                          |
-| `is_active` | `boolean`      | Enables or disables a tag | `0` or `1`                             |
+| `is_active` | `boolean`      | Enables or disables a tag | `true` or `false`                      |
 
 **WARNING:** The data dictionary is subject to change. For that reason always refer to column names directly in your SQL statements, not column positions.
