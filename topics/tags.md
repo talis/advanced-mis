@@ -17,10 +17,10 @@ body_class: tags
 
 ### Columns
 
-| Column Name | Datatype       | Description               | Example                                |
-| ----------- | -------------- | ------------------------- | -------------------------------------- |
-| `tag_guid`  | `VARCHAR(64)`  | The GUID of the tag       | `478A70D8-C627-91EC-D681-FFE617FABDD9` |
-| `title`     | `VARCHAR(max)` | The tag title             | `Open access`                          |
-| `is_active` | `boolean`      | Enables or disables a tag | `true` or `false`                      |
+| Column Name | Datatype      | Description               | Example                                |
+| ----------- | ------------- | ------------------------- | -------------------------------------- |
+| `tag_guid`  | `VARCHAR(64)` | The GUID of the tag       | `478A70D8-C627-91EC-D681-FFE617FABDD9` |
+| `title`     | `VARCHAR(50)` | The tag title             | `Open access`                          |
+| `is_active` | `boolean`     | Enables or disables a tag | `true` or `false`                      |
 
 **WARNING:** The data dictionary is subject to change. For that reason always refer to column names directly in your SQL statements, not column positions.
