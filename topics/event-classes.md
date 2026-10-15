@@ -14,6 +14,7 @@ This page is broken up into sections for different areas of Talis Aspire.
 - [Reading Lists](#reading-lists)
 - [Copyright Clearance](#copyright-clearance)
 - [Reviews](#reviews)
+- [Tenant Settings](#tenant-settings)
 - [Talis Elevate](#talis-elevate)
 
 ## Login Activity
@@ -60,6 +61,12 @@ This page is broken up into sections for different areas of Talis Aspire.
 | `reviews.actions.status.1` | An acquisitions review's status changed |  [<i class="yes fas fa-check-circle"><span class="sr-only">Available</span></i><br> View definition](timeseries.html#reviews-actions-status-1)  |  <i class="no fas fa-times-circle"><span class="sr-only">Not available</span></i>  |
 | `reviews.actions.setOutcome.1` | An acquisitions review outcome was set |  [<i class="yes fas fa-check-circle"><span class="sr-only">Available</span></i><br> View definition](timeseries.html#reviews-actions-setOutcome-1)  |  <i class="no fas fa-times-circle"><span class="sr-only">Not available</span></i>  |
 | `reviews.actions.assignUser.1` | An acquisitions review was assigned to a user |  [<i class="yes fas fa-check-circle"><span class="sr-only">Available</span></i><br> View definition](timeseries.html#reviews-actions-assignUser-1)  |  <i class="no fas fa-times-circle"><span class="sr-only">Not available</span></i>  |
+
+## Tenant Settings
+
+| Class | Description | Timeseries data? | Raw data? |
+| :- | :- | :- | :- |
+| `settings.search_source.edit` | A user saved changes to a search source |  [<i class="yes fas fa-check-circle"><span class="sr-only">Available</span></i><br> View definition](timeseries.html#settings-search-source-edit)  |  <i class="no fas fa-times-circle"><span class="sr-only">Not available</span></i>  |
 
 ## Talis Elevate
 

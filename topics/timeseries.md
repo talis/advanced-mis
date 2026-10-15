@@ -547,6 +547,34 @@ This event indicates that a resource used on a reading list has been edited.
 | `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
 
 <br/>
+<a name="settings-search-source-edit"></a>
+
+### Events with class `settings.search_source.edit`
+
+This event indicates that a user saved changes to a search source.
+
+| Column | Description | Example |
+| --- | --- | --- |
+| `dimension_1` | The tenancy short code and the search source ID, separated by a colon (`tenant:search_source_id`) | `broadminster:9ae9b970-7986-4fe3-904b-34f445448993` |
+| `dimension_2` | The source type. Possible values are (`my_bookmarks`, `works`, `eds`, `primo`, `summon`, `worldcat`) | `eds` |
+| `dimension_3` | Whether the search source is active after the edit (`true` / `false`) | `true` |
+| `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
+
+`dimension_1` can be split on a colon (`:`) into the tenancy short code and the search source ID. In an SQL query you might use these values like this:
+
+```redshift
+select
+    split_part(dimension_1, ':', 1) as tenancy,
+    split_part(dimension_1, ':', 2) as search_source_id,
+    dimension_2 as source_type,
+    dimension_3 as is_active,
+    sum(event_count)
+from f_event_timeseries_1hr
+where event_class = 'settings.search_source.edit'
+group by tenancy, search_source_id, source_type, is_active;
+```
+
+<br/>
 <a name="digitisation-view"></a>
 
 ### Events with class `digitisation.view`
