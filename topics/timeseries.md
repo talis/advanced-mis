@@ -439,6 +439,27 @@ group by view_mode, action, sub_action;
 |   | | `collapse` | A click to collapse the item details|
 
 <br/>
+<a name="list-add_resource-open"></a>
+
+### Events with class `list.add_resource.open`
+
+This event is recorded when a user opens the add-resource modal, either from the list itself or from one of its sections.
+
+| Column | Description | Examples |
+| --- | --- | --- |
+| `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
+| `dimension_2` | Where the modal was opened from. __See below for possible values__ | `list` |
+| `dimension_3` | A unique ID for this add-resource modal session. Each time the modal is opened it gets a new ID, so counting distinct values gives you the number of modal sessions | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
+
+#### Possible values of `list.add_resource.open dimension_2`
+
+| Value | Meaning |
+| --- | --- |
+| `list` | The modal was opened from the list itself |
+| `section` | The modal was opened from a section of the list |
+
+<br/>
 <a name="list-item-view"></a>
 
 ### Events with class `list.item.view`
