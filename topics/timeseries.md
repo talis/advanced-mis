@@ -439,6 +439,30 @@ group by view_mode, action, sub_action;
 |   | | `collapse` | A click to collapse the item details|
 
 <br/>
+<a name="list-add_resource-close"></a>
+
+### Events with class `list.add_resource.close`
+
+This event is recorded when a user dismisses the add-resource modal. It is not recorded when a resource is added, only when the user dismisses the modal.
+
+| Column | Description | Examples |
+| --- | --- | --- |
+| `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
+| `dimension_2` | How the user dismissed the modal. __See below for possible values__ | `close_button` |
+| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open` event recorded when the modal was opened, so you can match a close to its open | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
+
+#### Possible values of `list.add_resource.close dimension_2`
+
+| Value | Meaning |
+| --- | --- |
+| `close_button` | The user clicked the Close button in the modal footer |
+| `escape_key` | The user pressed the Escape key |
+| `backdrop` | The user clicked outside the modal |
+
+`backdrop` will only appear in the data once the modal is reduced in size. While the modal is fullscreen there is no area outside it to click.
+
+<br/>
 <a name="list-item-view"></a>
 
 ### Events with class `list.item.view`
