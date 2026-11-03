@@ -131,6 +131,36 @@ and dimension_3 = 'A-LIST-ID-HERE' -- example DE53F159-8AE9-F8D4-6518-263DED7D56
 order by time_window ASC;
 ```
 
+Maybe you want to know where people open the add-resource modal from. This query counts how often the modal was opened from the list itself and from a section of the list.
+
+```redshift
+-- add-resource modal opens per open location
+select dimension_2 as open_location, sum(event_count) as opens
+from f_event_timeseries_24hr
+where event_class = 'list.add_resource.open'
+group by open_location
+order by opens desc;
+```
+
+Maybe you want to know how far people get once they open the add-resource modal. Every event from one modal session shares the same `dimension_3`, so grouping by list you can compare how many times the modal was opened, how many searches were made and how many resources were added.
+
+```redshift
+-- add-resource modal opens, searches and added resources per list
+select
+    dimension_1 as list,
+    sum(case when event_class = 'list.add_resource.open' then event_count else 0 end) as opens,
+    sum(case when event_class = 'list.add_resource.search' then event_count else 0 end) as searches,
+    sum(case when event_class = 'list.add_resource.create' then event_count else 0 end) as added_resources
+from f_event_timeseries_24hr
+where event_class in (
+    'list.add_resource.open',
+    'list.add_resource.search',
+    'list.add_resource.create'
+)
+group by list
+order by opens desc;
+```
+
 ## Assumptions
 
 When working with user ids in `dimension_4` you will likely want to link this back to a user in your own systems or data warehouse. you can often use the `user.identifed` event to build a set of mapping data that will enable you to link an ID from the SAML conversation, with the internal `talis_guid` used to identify users in Talis Aspire.
