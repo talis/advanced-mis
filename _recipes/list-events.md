@@ -18,6 +18,9 @@ Sometimes you want to know about how people are interacting with lists. The sort
 * Are students interacting with the online systems that are being made available to support COVID course delivery adjustments?
 * Which items on a list have most interactions?
 * Which links to external content are most popular?
+* Where in a list do users open the add resource modal from, and how do they leave it?
+* How many searches do users run in the add resource modal?
+* Do users who search in the add resource modal give up, or add a resource?
 
 There are a host of variations of those questions, but they can all be answered using some events that capture activity on a list.  This recipe gives you a number of sample queries that give you a detailed view of activity in the system. 
 
@@ -119,6 +122,50 @@ select dimension_4 as external_link_domain, sum(event_count)
 from f_event_timeseries_24hr
 where event_class = 'list.item.external_link.click'
 group by dimension_4
+```
+
+Maybe you want to know whether users open the add resource modal from the list itself or from a section. The `open_location` is either `list` or `section`.
+
+```redshift
+select dimension_2 as open_location, sum(event_count) as opens
+from f_event_timeseries_24hr
+where event_class = 'list.add_resource.open'
+group by open_location;
+```
+
+Every time the modal is opened it gets a new id, which is recorded in `dimension_3` of the open, search and close events. Counting the search events for each id gives you the number of searches in each modal session. This query shows how many modal sessions had one search, two searches and so on.
+
+```redshift
+select searches, count(*) as sessions
+from (
+    select dimension_3 as session_id, sum(event_count) as searches
+    from f_event_timeseries_24hr
+    where event_class = 'list.add_resource.search'
+    group by dimension_3
+) as searches_per_session
+group by searches
+order by searches;
+```
+
+When the modal is dismissed, `close_type` records how. It is one of `close_button`, `escape_key` or `backdrop`.
+
+```redshift
+select dimension_2 as close_type, sum(event_count) as closes
+from f_event_timeseries_24hr
+where event_class = 'list.add_resource.close'
+group by close_type;
+```
+
+Because the close event shares its session id with the search events, you can find the sessions where a user searched and then dismissed the modal without adding a resource, and see how they left.
+
+```redshift
+select c.dimension_2 as close_type, count(distinct s.dimension_3) as sessions
+from f_event_timeseries_24hr s
+join f_event_timeseries_24hr c
+  on c.dimension_3 = s.dimension_3
+ and c.event_class = 'list.add_resource.close'
+where s.event_class = 'list.add_resource.search'
+group by close_type;
 ```
 
 Maybe you want to get a summary of when edits were made on a particular list and by whom? Note that because we are looking at this in the `f_rl_timeseries_24hr` data, the events are aggregated up to the day. If you want more granularity, you would have to read from the `f_rl_timeseries_1hr` view. 

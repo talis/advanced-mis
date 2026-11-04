@@ -460,6 +460,20 @@ This event is recorded when a user opens the add-resource modal, either from the
 | `section` | The modal was opened from a section of the list |
 
 <br/>
+<a name="list-add_resource-search"></a>
+
+### Events with class `list.add_resource.search`
+
+This event is recorded each time a user starts a search in the add-resource modal. The search term and the search sources used are not recorded.
+
+| Column | Description | Examples |
+| --- | --- | --- |
+| `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
+| `dimension_2` | Not used | |
+| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open` and `list.add_resource.close` events of the same session, so counting rows per value gives you the number of searches in that session | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
+
+<br/>
 <a name="list-add_resource-close"></a>
 
 ### Events with class `list.add_resource.close`
