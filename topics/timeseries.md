@@ -449,7 +449,7 @@ This event is recorded when a user opens the add-resource modal, either from the
 | --- | --- | --- |
 | `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
 | `dimension_2` | Where the modal was opened from. __See below for possible values__ | `list` |
-| `dimension_3` | A unique ID for this add-resource modal session. Each time the modal is opened it gets a new ID, so counting distinct values gives you the number of modal sessions | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open`, `list.add_resource.search`, `list.add_resource.create` and `list.add_resource.close` events of the same session, so you can link the events of one session. Each time the modal is opened it gets a new ID, so counting distinct values gives you the number of modal sessions | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
 | `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
 
 #### Possible values of `list.add_resource.open dimension_2`
@@ -470,7 +470,7 @@ This event is recorded each time a user starts a search in the add-resource moda
 | --- | --- | --- |
 | `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
 | `dimension_2` | Not used | |
-| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open`, `list.add_resource.create` and `list.add_resource.close` events of the same session, so counting rows per value gives you the number of searches in that session | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open`, `list.add_resource.search`, `list.add_resource.create` and `list.add_resource.close` events of the same session, so counting rows per value gives you the number of searches in that session | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
 | `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
 
 <br/>
@@ -484,7 +484,7 @@ This event is recorded when a user dismisses the add-resource modal. It is not r
 | --- | --- | --- |
 | `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
 | `dimension_2` | How the user dismissed the modal. __See below for possible values__ | `close_button` |
-| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open` event recorded when the modal was opened, so you can match a close to its open | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open`, `list.add_resource.search`, `list.add_resource.create` and `list.add_resource.close` events of the same session, so you can match a close to its open | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
 | `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
 
 #### Possible values of `list.add_resource.close dimension_2`
