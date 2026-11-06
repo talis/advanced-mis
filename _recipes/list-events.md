@@ -131,26 +131,26 @@ and dimension_3 = 'A-LIST-ID-HERE' -- example DE53F159-8AE9-F8D4-6518-263DED7D56
 order by time_window ASC;
 ```
 
-Maybe you want to know where people open the add-resource modal from. This query counts how often the modal was opened from the list itself and from a section of the list.
+Maybe you want to know which kinds of search source people add resources from. The source type is the first part of `dimension_2` in the `list.add_resource.create` event.
 
 ```redshift
--- add-resource modal opens per open location
-select dimension_2 as open_location, sum(event_count) as opens
+-- resources added to lists per search source type
+select split_part(dimension_2, ':', 1) as source_type, sum(event_count) as resources_added
 from f_event_timeseries_24hr
-where event_class = 'list.add_resource.open'
-group by open_location
-order by opens desc;
+where event_class = 'list.add_resource.create'
+group by source_type
+order by resources_added desc;
 ```
 
-Maybe you want to know how far people get once they open the add-resource modal. Every event from one modal session shares the same `dimension_3`, so grouping by list you can compare how many times the modal was opened, how many searches were made and how many resources were added.
+Maybe you want to know how far people get once they open the add-resource modal. Each time the modal is opened it gets its own ID, recorded in `dimension_3` of the open, search, create and close events of that session. Counting the distinct IDs for each event class gives you the number of sessions that reached each step, so for each list you can see how many modal sessions were opened, how many included a search and how many ended with a resource being added.
 
 ```redshift
--- add-resource modal opens, searches and added resources per list
+-- add-resource modal sessions per list: opened, searched and added a resource
 select
     dimension_1 as list,
-    sum(case when event_class = 'list.add_resource.open' then event_count else 0 end) as opens,
-    sum(case when event_class = 'list.add_resource.search' then event_count else 0 end) as searches,
-    sum(case when event_class = 'list.add_resource.create' then event_count else 0 end) as added_resources
+    count(distinct case when event_class = 'list.add_resource.open' then dimension_3 end) as sessions_opened,
+    count(distinct case when event_class = 'list.add_resource.search' then dimension_3 end) as sessions_with_search,
+    count(distinct case when event_class = 'list.add_resource.create' then dimension_3 end) as sessions_with_added_resource
 from f_event_timeseries_24hr
 where event_class in (
     'list.add_resource.open',
@@ -158,7 +158,7 @@ where event_class in (
     'list.add_resource.create'
 )
 group by list
-order by opens desc;
+order by sessions_opened desc;
 ```
 
 ## Assumptions
