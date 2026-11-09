@@ -130,4 +130,9 @@ erDiagram
     }
     f_rl_tag_item_links ||--o{ f_rl_items : item_guid
     f_rl_tag_item_links ||--o{ f_rl_tags : tag_guid
+
+    f_rl_search_sources {
+        string id
+    }
+    f_rl_search_sources ||..o{ f_event_timeseries_XXhr : id
 </div>
