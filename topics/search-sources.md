@@ -22,6 +22,6 @@ body_class: search-sources
 | `id`          | `VARCHAR(64)`  | The ID of the search source                                                                         | `478a70d8-c627-91ec-d681-ffe617fabdd9`   |
 | `title`       | `VARCHAR(255)` | The search source title                                                                             | `Library search`                         |
 | `source_type` | `VARCHAR(64)`  | The type of the search source, for example `my_bookmarks`, `works`, `eds`, `primo`, `summon` or `worldcat` | `works`                           |
-| `is_active`   | `boolean`      | Enables or disables a search source                                                                 | `true` or `false`                        |
+| `is_active`   | `boolean`      | The search source is active                                                                 | `true` or `false`                        |
 
 **WARNING:** The data dictionary is subject to change. For that reason always refer to column names directly in your SQL statements, not column positions.
