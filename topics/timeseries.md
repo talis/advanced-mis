@@ -506,7 +506,7 @@ This event is recorded when a user selects a resource in the add-resource modal 
 | --- | --- | --- |
 | `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
 | `dimension_2` | The search source and the added item, made up of three components separated by a colon (`:`): source type, search source ID and item ID. __See below for possible values__ | `works:12345:item-123` |
-| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open` and `list.add_resource.search` events recorded in the same modal session, so you can match them together | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open`, `list.add_resource.search`, `list.add_resource.create` and `list.add_resource.close` events of the same session, so you can link the events of one session | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
 | `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
 
 #### Possible values of `list.add_resource.create dimension_2`
