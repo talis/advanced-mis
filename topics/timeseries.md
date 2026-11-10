@@ -496,6 +496,51 @@ This event is recorded when a user dismisses the add-resource modal. It is not r
 | `backdrop` | The user clicked outside the modal |
 
 <br/>
+<a name="list-add_resource-create"></a>
+
+### Events with class `list.add_resource.create`
+
+This event is recorded when a user selects a resource in the add-resource modal and adds it to a list. It records which search source the resource came from.
+
+| Column | Description | Examples |
+| --- | --- | --- |
+| `dimension_1` | The list's Globally Unique ID, namespaced by the tenancy short code | `broadminster:DE53F159-8AE9-F8D4-6518-263DED7D56E9` |
+| `dimension_2` | The search source and the added item, made up of three components separated by a colon (`:`): source type, search source ID and item ID. __See below for possible values__ | `works:12345:item-123` |
+| `dimension_3` | A unique ID for this add-resource modal session. It is the same value as in `dimension_3` of the `list.add_resource.open`, `list.add_resource.search`, `list.add_resource.create` and `list.add_resource.close` events of the same session, so you can link the events of one session | `5354ea7e-ea15-408a-b2cc-ef8b12e06d69` |
+| `dimension_4` | User's Globally Unique ID, can be joined to [`public.f_rl_users.talis_guid`]({{ site.baseurl }}/topics/users.html). | `myoVK7wfosXXWlw` |
+
+#### Possible values of `list.add_resource.create dimension_2`
+
+Split `dimension_2` on the colon to get its three components:
+
+```redshift
+select
+    split_part(dimension_2, ':', 1) as source_type,
+    split_part(dimension_2, ':', 2) as search_source_id,
+    split_part(dimension_2, ':', 3) as item_id,
+    event_count
+from f_event_timeseries_24hr
+where event_class = 'list.add_resource.create';
+```
+
+| Component | Description |
+| --- | --- |
+| Source type | The kind of search source the resource was added from. See the table below |
+| Search source ID | The ID of the search source. It can be matched to the tenant's search source configuration |
+| Item ID | The ID of the item that was added to the list |
+
+The title of the search source is not recorded. To find out which search source an ID refers to, match the search source ID to the tenant's search source configuration.
+
+| Source type | Meaning |
+| --- | --- |
+| `works` | The resource was added from Works |
+| `eds` | The resource was added from an EBSCO Discovery Service search source |
+| `primo` | The resource was added from a Primo search source |
+| `worldcat` | The resource was added from a WorldCat search source |
+| `summon` | The resource was added from a Summon search source |
+| `my_bookmarks` | The resource was added from the user's own bookmarks |
+
+<br/>
 <a name="list-item-view"></a>
 
 ### Events with class `list.item.view`

@@ -178,6 +178,36 @@ and dimension_3 = 'A-LIST-ID-HERE' -- example DE53F159-8AE9-F8D4-6518-263DED7D56
 order by time_window ASC;
 ```
 
+Maybe you want to know which kinds of search source people add resources from. The source type is the first part of `dimension_2` in the `list.add_resource.create` event.
+
+```redshift
+-- resources added to lists per search source type
+select split_part(dimension_2, ':', 1) as source_type, sum(event_count) as resources_added
+from f_event_timeseries_24hr
+where event_class = 'list.add_resource.create'
+group by source_type
+order by resources_added desc;
+```
+
+Maybe you want to know how far people get once they open the add-resource modal. Each time the modal is opened it gets its own ID, recorded in `dimension_3` of the open, search, create and close events of that session. Counting the distinct IDs for each event class gives you the number of sessions that reached each step, so for each list you can see how many modal sessions were opened, how many included a search and how many ended with a resource being added.
+
+```redshift
+-- add-resource modal sessions per list: opened, searched and added a resource
+select
+    dimension_1 as list,
+    count(distinct case when event_class = 'list.add_resource.open' then dimension_3 end) as sessions_opened,
+    count(distinct case when event_class = 'list.add_resource.search' then dimension_3 end) as sessions_with_search,
+    count(distinct case when event_class = 'list.add_resource.create' then dimension_3 end) as sessions_with_added_resource
+from f_event_timeseries_24hr
+where event_class in (
+    'list.add_resource.open',
+    'list.add_resource.search',
+    'list.add_resource.create'
+)
+group by list
+order by sessions_opened desc;
+```
+
 ## Assumptions
 
 When working with user ids in `dimension_4` you will likely want to link this back to a user in your own systems or data warehouse. you can often use the `user.identifed` event to build a set of mapping data that will enable you to link an ID from the SAML conversation, with the internal `talis_guid` used to identify users in Talis Aspire.
